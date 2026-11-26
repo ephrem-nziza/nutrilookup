@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriLookup</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>NutriLookup</h1>
+        <p class="sub"> Search food and compare calories and protein before eating it.</p>
+    </header>
+
+    <main>
+        <form id="search-form">
+            <input type="text" id="query" placeholder="Try: Banana, Rice, Chicken breast" autocomplete="off">
+            <button type="submit" id="search-btn">Search</button>
+        </form>
+
+        <div class="controls">
+            <label>
+                Type
+                <select id="type-filter">
+                    <option value="">All</option>
+                    <option value="Foundation">Foundation</option>
+                    <option value="SR Legacy">SR Legacy</option>
+                    <option value="Survey (FNDDS)">Survey (FNDDS)</option>
+                    <option value="Branded">Branded</option>
+                </select>
+            </label>
+
+            <label>
+                Sort by
+                <select id="sort-by">
+                    <option value="default">Best match</option>
+                    <option value="name">Name (A-Z)</option>
+                    <option value="cal-high">Calories (High to Low)</option>
+                    <option value="cal-low">Catlories (Low to High)</option>
+                    <option value="protein-high">Protein (High to Low)</option>
+                </select>
+            </label>
+
+            <span id="count"></span>
+        </div>
+
+        <!--These three get shown/hidden from app.js-->
+        <div id="loading" class="hidden">Loading...</div>
+        <div id="error" class="hidden"></div>
+        <div id="empty" class="hidden">Nothing found. Check the spelling or try a simpler word.</div>
+
+        <p id="start-msg">Type a food to get started.</p>
+
+        <ul id="results"></ul>
+    </main>
+
+    <!--detail view-->
+    <div id="detail" class="hidden">
+        <div class="detail-box">
+            <button id="close-detail">Close</button>
+            <div id="detail-content"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>The source of this data is <a href="https://fdc.nal.usda.gov/" target="_blank">USDA Food Data Central API.</a> The values are per 100g.</p>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
