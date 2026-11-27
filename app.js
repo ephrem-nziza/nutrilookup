@@ -1,6 +1,6 @@
 // NutriLookup will get the data from USDA Food Data Central
 const API_KEY = config.apikey;
-const BASE = "https://api.nal.usda.gov/fdc/v1";
+const BASE = config.base || "https://api.nal.usda.gov/fdc/v1";
 
 let allfoods = []; // The last search results
 
@@ -47,7 +47,11 @@ async function getFoods(term){
     let t = setTimeout(function () { controller.abort(); }, 8000);
 
     try{
-        const resp = await fetch(BASE + "/foods/search?query=" + encodeURIComponent(term) + "&pageSize=30&api_key=" + API_KEY, {signal: controller.signal});
+        let url = BASE + "/foods/search?query=" + encodeURIComponent(term) + "&pageSize=30";
+        if (API_KEY){
+            url+= "&api_key=" + API_KEY; // This will only work when running locally
+        }
+        const resp = await fetch(url, {signal: controller.signal});
         clearTimeout(t);
 
         if (!resp.ok){
