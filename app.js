@@ -120,7 +120,7 @@ function showDetail(f){
 
 function showFoods(foods){
     list.innerHTML = '';
-    count.textContent = foods.length + (foods.length == 1 ? " result" : "results");
+    count.textContent = foods.length + (foods.length == 1 ? " result" : " results");
 
     for(let i = 0; i < foods.length; i++){
         const f = foods[i];
